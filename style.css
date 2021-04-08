@@ -1,0 +1,39 @@
+
+.pixel{
+   
+    border: 0.5px solid skyblue;
+    border-radius: 5px;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    font-family: lobster;
+    font-size: 1.2rem;
+  
+}
+.controls{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+button{
+    padding: 15px;
+    color: #fff;
+    background: #2b7de9;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.pixel:hover{
+    background-color: teal;
+}
+.container{
+    display: grid;
+    justify-content: center;
+    margin: 50px auto;
+    max-width: 640px;
+    max-height: 640px;
+    border: 0.5px solid black;
+    border-radius: 5px;
+}

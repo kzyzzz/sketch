@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet"> 
+        <title>Etch-a-Sketch</title>
+    </head>
+    <body>
+        <div class='header'>
+            <h1>Etch-a-Sketch</h1>
+        </div>
+        <div class='controls'>
+            <button>Set and clear</button>
+        </div>
+        <div class='container'>
+
+        </div>
+        
+    </body>
+</html>
+
+<script>
+    let gridSize = 16;  
+    function rnd(base){
+        function r() {
+            let r = Math.floor(Math.random()* 255) - base;
+            if (r < 0) return 0;
+            return r;
+        }
+        return 'rgb(' + r() +',' + r() +',' + r()+')';
+    }
+
+    function init(size) {
+        let step = 0;
+        let pixelSize = Math.round(640 / size);
+        const container = document.querySelector('.container');
+        container.innerHTML = '';
+        container.setAttribute('style', `grid-template-columns: repeat(${size}, ${pixelSize}px)`);
+        console.log(pixelSize);
+            for (let num = 0; num < size*size; num++){
+                const div = document.createElement('div');
+                div.classList.add('pixel');
+                div.setAttribute('style', `width: ${pixelSize}px; height: ${pixelSize - 3}px`);
+                container.appendChild(div);
+            }
+
+        const pixels = document.querySelectorAll('.pixel');
+        pixels.forEach((pixel) => {
+            pixel.addEventListener('mouseover', () => {
+                //pixel.classList.add('fill');
+                step += 5;
+                let randomColor = rnd(step);
+                pixel.style.cssText += `background-color: ${randomColor}`;   
+            });
+        });
+    }
+
+    const button = document.querySelector('button');
+    button.addEventListener('click', () => {
+        let newSize = 0;
+        while (newSize < 1 || newSize > 101) {
+            newSize = prompt('Enter sketch size: X * X', '16');
+        }
+        init(newSize);
+    });
+
+    init(gridSize);
+   
+    
+    
+</script>
