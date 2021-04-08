@@ -10,7 +10,15 @@
             <h1>Etch-a-Sketch</h1>
         </div>
         <div class='controls'>
-            <button>Set and clear</button>
+            <div class='controls-item'>
+                <button>Set and clear</button>
+             </div>
+             <div class='controls-item'>
+                <input type='range' min='1' max='100' value='16' id='selector'>
+            </div>
+            <div class='controls-item'>
+                <h1 class='header' id='size-info'>size</h1>
+            </div>
         </div>
         <div class='container'>
 
@@ -21,6 +29,9 @@
 
 <script>
     let gridSize = 16;  
+    const sizeInfo = document.querySelector('#size-info');
+    const slider = document.querySelector('#selector');
+
     function rnd(base){
         function r() {
             let r = Math.floor(Math.random()* 255) - base;
@@ -32,15 +43,16 @@
 
     function init(size) {
         let step = 0;
-        let pixelSize = Math.round(640 / size);
+        let pixelSize = (640 / size);
+        slider.value = gridSize;
+        sizeInfo.textContent = `${gridSize}x${gridSize}`;
         const container = document.querySelector('.container');
         container.innerHTML = '';
-        container.setAttribute('style', `grid-template-columns: repeat(${size}, ${pixelSize}px)`);
+        container.setAttribute('style', `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr)`);
         console.log(pixelSize);
             for (let num = 0; num < size*size; num++){
                 const div = document.createElement('div');
                 div.classList.add('pixel');
-                div.setAttribute('style', `width: ${pixelSize}px; height: ${pixelSize - 3}px`);
                 container.appendChild(div);
             }
 
@@ -57,11 +69,15 @@
 
     const button = document.querySelector('button');
     button.addEventListener('click', () => {
-        let newSize = 0;
-        while (newSize < 1 || newSize > 101) {
-            newSize = prompt('Enter sketch size: X * X', '16');
-        }
-        init(newSize);
+        init(gridSize);
+    });
+
+  
+  
+    slider.addEventListener('change', (e) => {
+        gridSize = slider.value;
+       
+        sizeInfo.textContent = `${gridSize}x${gridSize}`;
     });
 
     init(gridSize);

@@ -1,8 +1,8 @@
 
 .pixel{
    
-    border: 0.5px solid skyblue;
-    border-radius: 5px;
+    border: 0.5px solid lightcyan;
+    border-radius: 4px;
 }
 .header{
     display: flex;
@@ -11,10 +11,20 @@
     font-size: 1.2rem;
   
 }
+
 .controls{
     display: flex;
     justify-content: center;
     flex-direction: row;
+}
+.controls-item{
+    display: flex;
+    margin: 0 20px;
+    outline: none;
+}
+#size-info{
+    min-width: 70px;
+    font-size: 1.5rem;
 }
 button{
     padding: 15px;
@@ -32,8 +42,8 @@ button{
     display: grid;
     justify-content: center;
     margin: 50px auto;
-    max-width: 640px;
-    max-height: 640px;
-    border: 0.5px solid black;
+    width: 60vh;
+    height: 60vh;
+    border: 0.2px solid rgba(0, 0, 0, 0.7);
     border-radius: 5px;
 }
